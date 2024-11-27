@@ -1,5 +1,5 @@
 # PhenoEncoder
-This directory includes the python scripts as part of the PhenoEncoder project, using datasets from UCI Machine Learning Repository (https://archive.ics.uci.edu/ml/datasets/Mice+Protein+Expression) and VariantSpark (http://gigadb.org/dataset/100759) including genomic variants associated with simulated complex phenotypes, in their respective directories.
+This directory includes the python scripts as part of the PhenoEncoder project, using datasets from UCI Machine Learning Repository (https://archive.ics.uci.edu/ml/datasets/Mice+Protein+Expression) which contains continuous protein expression levels of trisomic and healthy mice, and VariantSpark (http://gigadb.org/dataset/100759) including genomic variants associated with simulated complex phenotypes, in their respective directories.
 
 <p align="center">
   <img width=50% height=50% src="https://github.com/user-attachments/assets/2e7ad93b-20be-4006-80aa-bd19f87268c1">
@@ -19,3 +19,5 @@ For the multiple autoencoder architecture, SNP datasets need to be pre-processed
 ```bash
 
 ```
+Recode comment
+
