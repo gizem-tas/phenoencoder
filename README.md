@@ -15,9 +15,28 @@ For the Mice Protein Expression levels, the input data dimensionality is 77, whi
 ## The Full PhenoEncoder
 The VariantSpark dataset includes real genotyping data of 2,504 samples from 1000-Genomes Project for which binary phenotype labels are simulated using the Polygenic Epistatic Phenotype Simulator (PEPS) (https://pubmed.ncbi.nlm.nih.gov/38269921/). In our experiments, we used the phenotype simulated with the options cnf=8 and run=3. It is possible to modify these options in the scripts for testing our methodology under different PEPS phenotypes.
 
-For the multiple autoencoder architecture, SNP datasets need to be pre-processed. The necesssary order of the corresponding pre-processing scripts for this set of experiments is: 
+### Data Preprocessing
+For the multiple autoencoder architecture, SNP datasets need to be pre-processed.
+Estimating the haplotype blocks from vcf files:
 ```bash
-
+for chr_no in {1..22};
+  plink --vcf <vcf_file_name> --blocks no-pheno-req --blocks-max-kb 10000 --blocks-min-maf 0.01 --blocks-recomb-highci 0.7 --blocks-strong-highci 0.85 --blocks-strong-lowci 0.5001 --chr ${i} --out <output_file_name>;
+done
 ```
-Recode comment
-
+The necesssary order of the preprocessing scripts for extracting truth blocks: 
+```bash
+1. truth_blocks.py # Find the truth blocks
+2. count_truth_SNPs.py # Finds the SNPs lost in between haplotype block boundaries
+3. unfound_truth_blocks.py # Finds lost SNPs' neighbor blocks and updates only_truth_blocks file
+4. list_snps_in_truth_blocks.py # Writes the SNPs in truth blocks to <SNPsinTruthBlocks.txt> file  
+```
+To recode the SNPs in truth blocks into allelic dosage values:
+```bash
+plink --vcf <vcf_file_name> --extract <SNPsinTruthBlocks.txt> --make-bed --out <TruthBlocks>
+plink --bfile <TruthBlocks> --recodeA --out <TruthBlocks_recoded>
+```
+Resulting recoded data file <TruthBlocks_recoded.raw>  has the following format:
+```bash
+FID  IID  PAT  MAT  SEX  PHENOTYPE snp001  snp002 ...  snpXXX
+```
+See https://github.com/gizem-tas/haploblock-autoencoders/blob/main/README.md for the module recodeA.py for handling recoded files.
