@@ -1,6 +1,6 @@
 # PhenoEncoder
 This directory includes the python scripts as part of the PhenoEncoder project, using datasets from UCI Machine Learning Repository (https://archive.ics.uci.edu/ml/datasets/Mice+Protein+Expression) and VariantSpark (http://gigadb.org/dataset/100759) including genomic variants associated with simulated complex phenotypes, in their respective directories.
-![phenoencoder_diagram](https://github.com/user-attachments/assets/2e7ad93b-20be-4006-80aa-bd19f87268c1)
+![phenoencoder_diagram](https://github.com/user-attachments/assets/2e7ad93b-20be-4006-80aa-bd19f87268c1 =250x250)
 
 ## The Prototoype Model
 For the Mice Protein Expression levels, the input data dimensionality is 77, which is computationally feasible to process through a single autoencoder. Therefore, we do not perform window-based preprocessing of the input data for these set of experiments, the PhenoEncoder model for this case consists of a single autoencoder and the auxiliary classifier.
